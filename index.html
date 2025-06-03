@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Intelligence Core</title>
+    <style>
+        /* Gaya untuk welcome page */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: #ffffff;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            color: #4a5568;
+        }
+        
+        .welcome-container {
+            text-align: center;
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 1s ease;
+        }
+        
+        .welcome-container.hidden {
+            opacity: 0;
+            transform: translateY(20px);
+            visibility: hidden;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #2d3748;
+        }
+        
+        p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            color: #4a5568;
+        }
+        
+        .logo {
+            width: 150px;
+            height: 150px;
+            margin-bottom: 30px;
+            animation: pulse 2s infinite;
+            stroke: #4a5568;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+        }
+        
+        .loading-bar {
+            width: 300px;
+            height: 4px;
+            background: rgba(74, 85, 104, 0.2);
+            margin: 30px auto;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        
+        .loading-progress {
+            height: 100%;
+            width: 0%;
+            background: #4a5568;
+            animation: loading 3s linear forwards;
+        }
+        
+        @keyframes loading {
+            to {
+                width: 100%;
+            }
+        }
+
+        /* Gaya untuk login page */
+        .login-container {
+            background: #ffffff;
+            padding: 2.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            position: absolute;
+            opacity: 0;
+            transform: translateY(20px);
+            visibility: hidden;
+            transition: all 1s ease;
+        }
+        
+        .login-container.visible {
+            opacity: 1;
+            transform: translateY(0);
+            visibility: visible;
+        }
+        
+        .login-logo {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #4a5568;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.25rem;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        input:focus, select:focus {
+            outline: none;
+            border-color: #4299e1;
+        }
+        
+        .login-btn {
+            width: 100%;
+            padding: 0.75rem;
+            background-color: #4299e1;
+            color: white;
+            border: none;
+            border-radius: 0.25rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .login-btn:hover {
+            background-color: #3182ce;
+        }
+        
+        .error-message {
+            color: #e53e3e;
+            margin-top: 1rem;
+            font-size: 0.875rem;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Welcome Screen -->
+    <div class="welcome-container" id="welcomeScreen">
+        <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+            <line x1="12" y1="22.08" x2="12" y2="12"></line>
+        </svg>
+        <h1>Welcome</h1>
+        <p>You're now in command of Bus Intelligence Core</p>
+        <div class="loading-bar">
+            <div class="loading-progress"></div>
+        </div>
+    </div>
+
+    <!-- Login Screen -->
+    <div class="login-container" id="loginScreen">
+        <svg class="login-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#4a5568" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+            <line x1="12" y1="22.08" x2="12" y2="12"></line>
+        </svg>
+        <h1>Login</h1>
+        
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="role">Hak Akses</label>
+                <select id="role" required>
+                    <option value="" disabled selected>Pilih peran Anda</option>
+                    <option value="driver">Driver</option>
+                    <option value="kru">Kru</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="code" id="codeLabel">Kode Driver/Kru</label>
+                <input type="text" id="code" placeholder="Masukkan kode Anda" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Masukkan password" required>
+            </div>
+            
+            <button type="submit" class="login-btn">Login</button>
+            <div class="error-message" id="errorMessage">Kode atau password salah. Silakan coba lagi.</div>
+        </form>
+    </div>
+
+    <script>
+        // Setelah loading selesai, beralih ke halaman login
+        setTimeout(function() {
+            document.getElementById('welcomeScreen').classList.add('hidden');
+            document.getElementById('loginScreen').classList.add('visible');
+        }, 3000); // Sesuaikan dengan durasi animasi loading (3 detik)
+        
+        // Fungsi untuk halaman login
+        document.getElementById('role').addEventListener('change', function() {
+            const role = this.value;
+            const codeLabel = document.getElementById('codeLabel');
+            
+            if (role === 'driver') {
+                codeLabel.textContent = 'Kode Driver';
+            } else if (role === 'kru') {
+                codeLabel.textContent = 'Kode Kru';
+            }
+        });
+        
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const role = document.getElementById('role').value;
+            const code = document.getElementById('code').value;
+            const password = document.getElementById('password').value;
+            
+            // Contoh validasi sederhana
+            if (code && password) {
+                document.getElementById('errorMessage').style.display = 'none';
+                
+                // Redirect berdasarkan role
+                if (role === 'driver') {
+                    window.location.href = "https://example.com/driver-dashboard";
+                } else if (role === 'kru') {
+                    window.location.href = "https://example.com/kru-dashboard";
+                }
+            } else {
+                document.getElementById('errorMessage').style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
