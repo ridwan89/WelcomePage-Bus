@@ -232,8 +232,8 @@
             
             if (role === 'driver') {
                 codeLabel.textContent = 'Kode Driver';
-            } else if (role === 'kru') {
-                codeLabel.textContent = 'Kode Kru';
+            } else if (role === 'crew') {
+                codeLabel.textContent = 'Kode Crew';
             }
         });
         
@@ -251,7 +251,7 @@
                 // Redirect berdasarkan role
                 if (role === 'driver') {
                     window.location.href = "https://example.com/driver-dashboard";
-                } else if (role === 'kru') {
+                } else if (role === 'crew') {
                     window.location.href = "https://example.com/kru-dashboard";
                 }
             } else {
